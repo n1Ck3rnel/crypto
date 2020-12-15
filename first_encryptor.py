@@ -1,15 +1,15 @@
 
-def makeCodebook():
+def makeKey():
     decbook = {'5':'a', '2':'b', '#':'d', '8':'e', '1':'f', '3':'g', '4':'h', '6':'i', '0':'l', '9':'m',\
 			'*':'n', '%':'o', '=':'p', '(':'r', ')':'s', ';':'t', '?':'u', '@':'v', ':':'y', '7':' '}
-	encbook = {}
+    encbook = {}
 
     for k in decbook:
         val = decbook[k]
         encbook[val] = k
     return encbook, decbook
 
-def encrypt(mgs, encbook):
+def encrypt(msg, encbook):
     for c in msg:
         if c in encbook:
             msg = msg.replace(c, encbook[c])
@@ -20,4 +20,35 @@ def decrypt(msg, decbook):
         if c in decbook:
             msg = msg.replace(c, decbook[c])
     return msg
+
+if __name__ == '__main__':
+    h = open('plain.txt', 'rt')
+    content = h.read()
+    h.close()
+
+    encbook, decbook = makeKey()
+    content = encrypt(content, encbook)
+
+    h = open('encryption.txt', 'wt+')
+    h.write(content)
+    h.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
